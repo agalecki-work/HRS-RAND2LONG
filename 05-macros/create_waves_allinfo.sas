@@ -3,7 +3,7 @@
 /* Use `vars_map2?` dataset to  create `waves_info` dataset  */
 
 data _datain0_;
-  set vars_map(keep= vout &waves_list);
+  set vars_map1(keep= vout &waves_list);
   if strip(upcase(vout)) = "_DATAIN_NAME_";
 run;
 

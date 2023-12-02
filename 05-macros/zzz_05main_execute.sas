@@ -65,8 +65,8 @@ run;
    %traceit(vars_map_init);
 %mend skip;
 
-/* Dataset `vars_map` derived from a simple `map_info`*/
-data vars_map;
+/* Dataset `vars_map1` derived from a simple `map_info`*/
+data vars_map1;
  if 0 then set vars_map_template; 
  set _MAP2Long(
      keep= name dispatch pattern_range wave_pattern &waves_list
@@ -85,7 +85,7 @@ data vars_map;
  drop name c1 eq; 
 run;
 %if &traceit = Y %then 
-   %traceit(vars_map);
+   %traceit(vars_map1);
 
 
 /* `vars_map` modified */
@@ -93,7 +93,7 @@ run;
 %insert_datain_row; 
 
 %if &traceit = Y %then 
-   %traceit(vars_map);
+   %traceit(vars_map1);
 
 /*--- `waves_allinfo` dataset  with one row per wave created  */
 %create_waves_allinfo;
@@ -125,11 +125,11 @@ run;
 
 %save_aux_data;
 
-%contents_aux_data; 
+%**contents_aux_data; 
 
 %if &traceit = Y %then %do;
   ods html close;
-  ** ods listing;
+  ods listing;
 %end;
 
 %put :::;

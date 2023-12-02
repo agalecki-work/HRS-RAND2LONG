@@ -6,8 +6,8 @@ data aux_out.MAPX_02dictionary2;
    set _dictionary2;
 run;
 
-data aux_out.MAPX_03vars_map;
-   set vars_map;
+data aux_out.MAPX_03vars_map1;
+   set vars_map1;
 run;
 
 data aux_out.MAPX_01waves_info;

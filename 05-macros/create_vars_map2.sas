@@ -9,7 +9,7 @@ data vars_map2;
   length op $2;
   array waves_list {*} $300 &waves_list;
 
-  set vars_map;
+  set vars_map1;
   stmnt_no = _n_;
   
   * put "====>>>" vout = " STARTS ===========";
@@ -54,7 +54,7 @@ data vars_map2;
   
   drop  qidx c1;
 
-   label option = "Populate empty cells in `vars_map`: 1. pad cells _BLANK_ string, 2. all cells with sym_expression";
+   label option = "Populate empty cells in `vars_map1`: 1. pad cells _BLANK_ string, 2. all cells with sym_expression";
   /* Select option on how to populate empty cells in `waves list` array */
    select(dispatch_type);
     when ("YY") option =1; /*  `= ?` Conditionally with _BLANK_ string */ 

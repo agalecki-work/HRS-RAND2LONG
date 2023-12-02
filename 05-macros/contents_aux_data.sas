@@ -28,16 +28,16 @@ run;
 
 /* --- mapx_vars_map ---*/
 
-Title "03. Contents of `mapx_vars_map` dataset";
-%contents_data(vars_map, print=N);
-ods proclabel = "03.Data: mapx_vars_map";
+Title "03. Contents of `mapx_vars_map1` dataset";
+%contents_data(vars_map1, print=N);
+ods proclabel = "03.Data: mapx_vars_map1";
 proc print data =contents contents = "contents"; 
 var memname name  type length label format nobs;
 run;
 
-Title "03. Data `mapx_vars_map` with _DATAIN_ row inserted (obs=20)";
-ods proclabel = "03. Data: mapx_vars_map";
-proc print data = vars_map(obs =20) contents = "obs=20"; 
+Title "03. Data `mapx_vars_map1` with _DATAIN_ row inserted (obs=20)";
+ods proclabel = "03. Data: mapx_vars_map1";
+proc print data = vars_map1(obs =20) contents = "obs=20"; 
 run;
 
 /* --- mapx_vars_map2 ---*/

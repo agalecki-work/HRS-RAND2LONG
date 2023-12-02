@@ -3,7 +3,7 @@
 
 /* `_datain0_ may contain zero rows */
 data _datain0_;
-  set vars_map (keep=vout);
+  set vars_map1 (keep=vout);
   if strip(upcase(vout)) = "_DATAIN_NAME_";
 run;
 
@@ -31,8 +31,8 @@ data _temp_;
     output;
 run;
 
-data vars_map;
-  set _temp_ vars_map;
+data vars_map1;
+  set _temp_ vars_map1;
 run;
 
 %end;
