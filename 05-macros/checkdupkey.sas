@@ -1,5 +1,5 @@
 %macro checkdupkey(data, keys, opt = S, keepall =Y, out =_mrgd_dupkey_) / des = "M1: Check data for dupkeys";  
-/* _mrgd_dupkey_ created */
+/* By default dataset _mrgd_dupkey_ created */
 %put --> checkdupkey macro for %UPCASE(&data) dataset STARTS;
 %put keys = &keys;
 
