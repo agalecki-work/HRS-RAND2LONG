@@ -47,29 +47,11 @@ data _dictionary;
 /* They should have zero observations */
 %checkdupkey(_dictionary, name);
 
-
-%macro skip;
-%let dsid = %sysfunc(open(_MAP2Long)); /* & map_info */
-
-
-data vars_map_init;
-/* Add wave_pattern and pattern_range if needed */
-  set _MAP2Long;
-  %if %sysfunc(varnum(&dsid, wave_pattern)) = 0 or 
-      %sysfunc(varnum(&dsid, pattern_range))   = 0 %then %do; 
-        wave_pattern ="";
-        pattern_range ="";
-  %end;
-run;
-%if &traceit = Y %then 
-   %traceit(vars_map_init);
-%mend skip;
-
 /* Dataset `vars_map1` derived from a simple `map_info`*/
 data vars_map1;
  if 0 then set vars_map_template; 
  set _MAP2Long(
-     keep= name dispatch pattern_range wave_pattern &waves_list
+     keep= name dispatch wave_pattern &waves_list
      );
  /* Create vout variable */
     length  c1 $1; /* First character in `dispatch` */

@@ -26,6 +26,9 @@
 *.sas7bitm
 
 *.dat
+*.dbf
+
+*.accdb
 
 *.htm
 *.html

@@ -27,5 +27,6 @@ PROC IMPORT OUT=lib.&data
 run;
 %mend _2sas;
 
-%_2xlsx; 
+%_2xlsx; /* From SAS to Excel */
+%***_2sas; /* From Excel to SAS */
 

@@ -2,7 +2,7 @@
 /* Create vars_map2 with expanded rows in `vars_map` */;
 data vars_map2;
   retain stmnt_no vout dispatch dispatch2 
-         eq  q dispatch_type sym_expression option op wave_pattern pattern_range;
+         eq  q dispatch_type sym_expression option op wave_pattern;
    length sym_expression $200;
   length tmpci $300;
   * length tmpc $200;
@@ -74,11 +74,11 @@ data vars_map2;
   
    do &tmpi; ** to dim(waves_list); /* do over selected `wavei` */
      tmpci = strip(waves_list[wavei]);
-       put wavei=  tmpci = ;
+       *put wavei=  tmpci = ;
        
        /*-- (skip [-] cells, do not over-write non-empty cells --*/ 
-       %_wave_pattern; /* use `pattern_range` and ` wave_pattern` vars to populate empty cells */
-       put tmpci =;    
+       %_wave_pattern; /* use ` wave_pattern` vars to populate empty cells */
+       *put tmpci =;    
        /*-- if cell is blank  */
         if tmpci = "" then do;
           /*--- populate empty cells with simple `sym_expression` ---*/

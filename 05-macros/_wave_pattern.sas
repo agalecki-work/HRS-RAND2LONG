@@ -1,14 +1,14 @@
 %macro _wave_pattern;
 /*-- requires wave_pattern, tmpci and wavei variables */
 /* Invoked by `create_vars_map2` macro  */
-/* Based on pattern_range`, `wave_pattern` modifies tmpci */
-put "--- Macro _wave_pattern starts";
+/* Based on  `wave_pattern` modifies tmpci */
+*put "--- Macro _wave_pattern starts";
 length res $200;
 
 
 
 /* if cell blank and wave scope are provided */ 
-put tmpci= wavei= min_range= max_range= ;
+*put tmpci= wavei= min_range= max_range= ;
 
 
 if tmpci = "" and  min_range <= wavei <= max_range then do;
@@ -20,7 +20,7 @@ if tmpci = "" and  min_range <= wavei <= max_range then do;
    tmpci = strip(res);
 end;
 
-put "--- Macro _wave_pattern ends";
+*put "--- Macro _wave_pattern ends";
 
 
 %mend _wave_pattern;

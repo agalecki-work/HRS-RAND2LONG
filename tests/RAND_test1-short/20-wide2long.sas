@@ -14,7 +14,9 @@ options mprint;
 * `LIBIN` libref for WIDE dataset(s);
 
 libname libin "C:\temp";
-%let datain = libin.randhrs1992_2020v1_test;
+
+* `datain` name of input SAS dataset;
+%let datain = randhrs1992_2020v1_test;
 
 /* `formats_cntlin` macro variable refers to a cntlin SAS dataset with format definitions */ 
 %let formats_cntlin = libin.sasfmts; ;
