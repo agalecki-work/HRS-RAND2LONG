@@ -11,11 +11,14 @@ libname libin "C:\temp";
 * Name of the input SAS dataset is defined in `DATAIN` macro variable;
 
 %let DATAIN = randhrs1992_2020v1;
+%let KEYS_DATAIN = RAHHIDPN;
+
+
 /*--- MAP_INFO: Wide to Long map ---- */
 
 libname lib_map  ".";
-%let map_info = lib_map.randhrs1992_2020v1_map; /* SAS dataset with map info */
-
+%let map_info = lib_map.randhrs1992_2020v1RL_map; /* SAS dataset with map info */
+                
 %let waves_list = hrs_wave1- hrs_wave15;     /* List of variables with _all_ wave names  */
 %let waves_sel =  1 to 15;                /* use `do loop` syntax for index value*/
 

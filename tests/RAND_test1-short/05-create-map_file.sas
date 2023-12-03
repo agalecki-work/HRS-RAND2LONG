@@ -11,8 +11,9 @@ libname libin "C:\temp";
 * Name of the input SAS dataset is defined in `DATAIN` macro variable;
 
 %let DATAIN = randhrs1992_2020v1_test;
+%let KEYS_DATAIN = RAHHIDPN;
 
-/*--- MAP_INFO: Wide to Long map in Excel format ---- */
+/*--- MAP_INFO: Wide to Long map stored as SAS dataset ---- */
 
 libname lib_map  ".";
 %let map_info = lib_map.rand2long_test1_map; /* SAS dataset with map info */

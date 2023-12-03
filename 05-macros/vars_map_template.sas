@@ -30,7 +30,7 @@ quit;
 data vars_map_template;
  label vout           = "Output variable name. For multiple vars. description only. ";
  label dispatch       = "Dispatch expression";
- label pattern_range     = "Wave range. Ex. 6:? "; 
+ ***label pattern_range     = "Wave range. Ex. 6:? "; 
  label wave_pattern   = "Wave_template";
 
    %do i =1 %to &nwords;
@@ -41,7 +41,7 @@ data vars_map_template;
  
  /* Length statements */
    length vout $100;
-   length dispatch wave_pattern pattern_range $200;
+   length dispatch wave_pattern  $200;
 
    %do i =1 %to &nwords;
        %let wordi = %scan(&waves_elist, &i, ' ');
@@ -50,7 +50,7 @@ data vars_map_template;
    
   /* Informat statements */
    informat vout $100.;
-   informat dispatch  wave_pattern pattern_range $200.;
+   informat dispatch  wave_pattern  $200.;
    %do i =1 %to &nwords;
      %let wordi = %scan(&waves_elist, &i, ' ');
      informat &wordi $300.;
@@ -59,7 +59,7 @@ data vars_map_template;
  
 /* format statements */
     format vout $100.;
-    format dispatch  wave_pattern pattern_range $200.;
+    format dispatch  wave_pattern $200.;
     %do i =1 %to &nwords;
          %let wordi = %scan(&waves_elist, &i, ' ');
          format &wordi $300.;

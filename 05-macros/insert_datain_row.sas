@@ -29,6 +29,7 @@ data _temp_;
     if tmpc = "" then waves_list[i] = strip(dispatch);  **strip(symget('DATAIN_NAME'));
     end;
     output;
+    drop tmpc i;
 run;
 
 data vars_map1;

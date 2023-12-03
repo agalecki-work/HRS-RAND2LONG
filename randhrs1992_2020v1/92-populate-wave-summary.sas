@@ -35,7 +35,7 @@ data lib.&data_map._92; /* postfix _92 added */
   
   end; /* do i */
  end; /* if countx >0 */
- drop i countx ci;
+ drop i countx ci ctmp c2 done;
  
 run;
 

@@ -26,6 +26,7 @@ data lib.&data_map._92; /* postfix _92 added */
     done =1;
     substr(ci,2,1) = "?";
     wave_pattern =tranwrd(ci,"?","[w]"); 
+    
    end;  /* if ci ..., i < 10*/
   if ci ne "" and i >=10 and wave_pattern = "" and done =0 then do;
       done =1;
@@ -36,7 +37,7 @@ data lib.&data_map._92; /* postfix _92 added */
   
   end; /* do i */
  end; /* if countx >0 */
- drop i countx ci;
+ drop i countx ci ctmp c2 done;
  
 run;
 

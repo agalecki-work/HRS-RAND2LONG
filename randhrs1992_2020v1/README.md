@@ -35,7 +35,7 @@ RAND data conversion is performed in two steps:
 
 ## Step 1: Generate **MAP_FILE** file with auxiliary SAS macros
 
-Run `05-create-macros.sas`
+Run `05-create-map_file.sas`
 
 * Input: *MAP_INFO* and *DATAIN* datasets      
 * Output: 

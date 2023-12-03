@@ -10,6 +10,12 @@
 %end;
 
 %put Macro `zzz_05main_execute` starts here;
+
+%checkdupkey(libin.&DATAIN, &KEYS_dataIN, keepall =N);
+%if &traceit = Y %then 
+   %traceit_contents(_mrgd_dupkey_);
+
+
 /*---  Create `dictionary_template` dataset ---*/
 %dictionary_template;
 
