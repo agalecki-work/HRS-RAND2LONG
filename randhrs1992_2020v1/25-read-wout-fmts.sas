@@ -24,7 +24,7 @@ run;
 
 Title "Data: &data. Selected vars (n=50)";
 proc print data = lib.&data(obs=50);
-var  RAHHIDPN WAVE_NUMBER INW HACOHORT STUDYYR R_HECOV3 R_YR;
+var  HHID PN HHIDPN WAVE_NUMBER INW HACOHORT STUDYYR R_HECOV3 R_YR;
 run;
 
 

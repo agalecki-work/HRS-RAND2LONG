@@ -11,7 +11,6 @@ libname libin "C:\temp";
 * Name of the input SAS dataset is defined in `DATAIN` macro variable;
 
 %let DATAIN = randhrs1992_2020v1;
-%let KEYS_DATAIN = RAHHIDPN;
 
 
 /*--- MAP_INFO: Wide to Long map ---- */

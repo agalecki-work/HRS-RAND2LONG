@@ -63,7 +63,7 @@ libname LIBOUT "./20-out";
 %include _macros(zzz_20include);
 %zzz_20include;
 
-%zzz_20main_execute
+%zzz_20main_execute;
 
 
 ENDSAS;
