@@ -3,7 +3,7 @@
 %put ===> Macro `zzz_05include` STARTS here ======;
 %put Macros listed below will be loaded:; 
 
-%let HRS_RAND2LONG_version=Dec2023-v0.2;
+%let HRS_RAND2LONG_version=Dec2023-v0.3;
 
 /*-- `zzz_main_05execute` */
 %put  - macro `zzz_05main_execute`;
