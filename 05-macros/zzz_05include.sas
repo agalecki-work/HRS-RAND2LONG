@@ -74,6 +74,16 @@
 %put  - macro `create_dictionary2`;
 %include _macros(create_dictionary2);
 
+/*-- `create_vars_map_init` */
+%put  - macro `create_vars_map_init`;
+%include _macros(create_vars_map_init);
+
+
+
+/*-- `create_vars_map1` */
+%put  - macro `create_vars_map1`;
+%include _macros(create_vars_map1);
+
 
 /*-- `create_vars_map2` */
 %put  - macro `create_vars_map2`;

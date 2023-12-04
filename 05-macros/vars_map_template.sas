@@ -9,7 +9,7 @@
 /* Expand `waves_list` macro variable */
 
 data waves_list;
-   set _MAP2Long(keep = &waves_list);
+   set vars_map_init(keep = &waves_list);
    stop;
 run;
 

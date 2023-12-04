@@ -64,5 +64,8 @@ proc sort data =  _dictionary2;
 by varnum;
 run;
 
+%if &traceit = Y %then 
+   %traceit(_dictionary2);
+
 
 %mend create_dictionary2;

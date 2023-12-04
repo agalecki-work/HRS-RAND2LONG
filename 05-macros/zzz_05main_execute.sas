@@ -12,6 +12,14 @@
 %put Macro `zzz_05main_execute` starts here;
 
 
+data dictionary_init;
+  set _MAP2Long(keep= name label clength format);
+run; 
+
+/* Dataset `vars_map_init`  created from _MAP2Long*/
+%if &vars_map = Y %then %create_vars_map_init;
+
+
 /*---  Create `dictionary_template` dataset ---*/
 %dictionary_template;
 
@@ -19,19 +27,21 @@
    %traceit_contents(dictionary_template);
 
 /*--- Create 'vars_map_template` dataset and `waves_elist` macro variable */
-
-%vars_map_template(_MAP2Long, &waves_list); /* & map_info */
-%put expanded waves_list := &waves_elist;
+%if &vars_map = Y %then %do;
+ %vars_map_template(vars_map_init, &waves_list); /* & map_info */
+ %put expanded waves_list := &waves_elist;
  
-%if &traceit = Y %then 
+ %if &traceit = Y %then 
    %traceit(vars_map_template);
+%end;
 
 
 /* Dataset `_dictionary`: */
 
+
 data _dictionary;
  if 0 then set dictionary_template; 
- set _MAP2Long(keep= name label clength format);
+ set dictionary_init;
   length c1 $1;
    varnum = _n_;
    name_valid = nvalid(name, 'v7'); 
@@ -49,64 +59,27 @@ data _dictionary;
 /* They should have zero observations */
 %checkdupkey(_dictionary, name);
 
-/* Dataset `vars_map1` derived from a simple `map_info`*/
-data vars_map1;
- if 0 then set vars_map_template; 
- set _MAP2Long(
-     keep= name dispatch wave_pattern &waves_list
-     );
- /* Create vout variable */
-    length  c1 $1; /* First character in `dispatch` */
- vout = strip(name);
- if dispatch = "" then  c1 = "";
-   else c1= substr(strip(dispatch),1,1);
- if c1 ="`" then dispatch = translate(dispatch,"","`");
- if dispatch = "" then  c1 = "";
-    else c1= substr(strip(dispatch),1,1);
+%if &vars_map = Y %then %do;
+  %create_vars_map1;
+ 
+ /*--- `waves_allinfo` dataset  with one row per wave created  */
+ %create_waves_allinfo;
+ 
+ /* DATA `vars_map2`: key: stmnt_no,  contains_DATAIN_ row */
+ %create_vars_map2; 
 
- if c1 eq "=" then eq ="Y"; else eq="N";
- * eq0 =eq;
- drop name c1 eq; 
-run;
-%if &traceit = Y %then 
-   %traceit(vars_map1);
+ /*--- `waves_info` dataset  with one row per wave created `vars_map2`  */
+ %create_waves_info;
 
-
-/* `vars_map` modified */
-/* _Conditionally_ inserts _datain_ row using dataset name stored in `DATAIN_NAME` macro variable */
-%insert_datain_row; 
-
-%if &traceit = Y %then 
-   %traceit(vars_map1);
-
-/*--- `waves_allinfo` dataset  with one row per wave created  */
-%create_waves_allinfo;
-
-%if &traceit = Y %then %do;
-   %traceit(_datain0_);
-   %traceit(waves_allinfo);
 %end;
 
 
-/* DATA `vars_map2`: key: stmnt_no,  contains_DATAIN_ row */
-%create_vars_map2; 
-
-
-/*--- `waves_info` dataset  with one row per wave created `vars_map2`  */
-%create_waves_info;
-
-%if &traceit = Y %then 
-   %traceit(waves_info);
-
 /* Create `_dictionary2` dataset by adding `datain#` variables */
 %create_dictionary2;
-%if &traceit = Y %then 
-   %traceit(_dictionary2);
 
-%create_mrg2;
-%if &traceit = Y %then 
-   %traceit(mrg2);
-
+%if &vars_map = Y %then %create_mrg2;
+  
+  
 %save_aux_data;
 
 %**contents_aux_data; 

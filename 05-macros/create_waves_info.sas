@@ -7,4 +7,8 @@ data waves_info;
  if wave_no in &tmp;
 run;
 
+%if &traceit = Y %then 
+   %traceit(waves_info);
+
+
 %mend create_waves_info;

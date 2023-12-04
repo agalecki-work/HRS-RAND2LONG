@@ -60,5 +60,8 @@ proc sort data=waves_info;
 by wave_no;
 run;
 
+%if &traceit = Y %then 
+   %traceit(mrg2);
+
 
 %mend create_mrg2;

@@ -1,6 +1,6 @@
 %macro create_waves_allinfo;
 
-/* Use `vars_map2?` dataset to  create `waves_info` dataset  */
+/* Use `vars_map1?` dataset to  create `waves_info` dataset  */
 
 data _datain0_;
   set vars_map1(keep= vout &waves_list);
@@ -36,5 +36,12 @@ run;
 /*--- Number of all waves ---*/
 %let wave_max_no = %attrn_nlobs(waves_allinfo);
 %put wave_max_no := wave_max_no;
+
+
+%if &traceit = Y %then %do;
+   %traceit(_datain0_);
+   %traceit(waves_allinfo);
+%end;
+
 
 %mend create_waves_allinfo;
