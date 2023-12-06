@@ -46,8 +46,9 @@ libname aux_out "&aux_outpath";
 options nofmterr;
 
 %let DATAIN_NAME =&datain;
- 
-%global HRS_RAND2LONG_version traceit;
+%let vars_map =Y;
+
+%global HRS_RAND2LONG_version traceit vars_map;
 %global map_file waves_sel  waves_sel2;
 %**global xlsx_fnm map_info;
 %global aux_outpath;
