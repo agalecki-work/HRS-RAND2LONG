@@ -20,16 +20,16 @@ libname libin "C:\temp";
 %let formats_cntlin = libin.sasfmts;
 
 /* Include file created by 05-create-macros.sas */
-filename _mapfile "./05-randhrs1992_2020v1.inc"; 
+filename _mapfile "./05-randhrs1992_2020v1RL.inc"; 
 %include _mapfile;
 
 /* Define fileref `_macros` to a folder with auxiliary macros  needed to execute this script*/
 
 filename _macros "../20-macros";
 
-/* Define fileref `fcmp_src` with path to FCMP source */
+/* Define fileref `fcmp_src` with path to FCMP functions source */
 
-filename fcmp_src "./20-usource/FCMP_src.sas";
+filename fcmp_src "../../20-usource/FCMP_src.sas";
 
 
 /*--- Inlude FCMP source ----*/
@@ -49,7 +49,7 @@ options cmplib = work._WIDE2LONG;
 
 libname LIBOUT "./20-out"; 
 
-%let outdata = libout.randhrs1992_2020v1_long;
+%let outdata = libout.randhrs1992_2020v1_Rlong;
 
 %let outdata_formats = libout.fmts_long;
 

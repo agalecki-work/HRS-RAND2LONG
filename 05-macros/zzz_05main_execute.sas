@@ -1,5 +1,26 @@
 %macro zzz_05main_execute;
 
+
+
+%let DATAIN_NAME =&datain;
+
+
+%global HRS_RAND2LONG_version traceit vars_map;
+%global map_file waves_sel  waves_sel2;
+%**global xlsx_fnm map_info;
+%global aux_outpath;
+%global waves_list waves_elist wave_max_no;
+%let waves_sel = %upcase(&waves_sel);
+%put wave_sel := &waves_sel;
+%let  waves_sel2 = %sysfunc(tranwrd(%quote(&waves_sel) ,TO, :));
+%put wave_sel2 := &waves_sel2;
+/*--- Includes macro definitions stored in  `_macros`  folder ---*/
+data _MAP2Long;
+ set &map_info;
+run;
+
+
+
 %if &traceit =Y %then %do;
  ods listing close;
  ods html  path =     "&aux_outpath" (URL=NONE)
