@@ -37,9 +37,10 @@
 *.xlsx
 *.bak
 
-# Preserve map datasets
+# Preserve _maps.xlsx
 
-!*_map.sas7bdat
+!*_maps.xlsx
+
 
 
 

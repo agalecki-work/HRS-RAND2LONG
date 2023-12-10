@@ -12,6 +12,12 @@
 %put  - macro `create_outdata`;
 %include _macros(create_outdata);
 
+
+/*-- `sort_base_logout` */
+%put  - macro `sort_base_logout`;
+%include _macros(sort_base_logout);
+
+
 /*-- `rename_base_longout` */
 %put  - macro `rename_base_longout`;
 %include _macros(rename_base_longout);
@@ -19,6 +25,8 @@
 /*-- `copy_formats_cntlin` */
 %put  - macro `copy_formats_cntlin`;
 %include _macros(copy_formats_cntlin);
+
+
 
 
 %put ===> Macro `zzz_20include` ENDS here ======;

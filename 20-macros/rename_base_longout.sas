@@ -1,9 +1,7 @@
 %macro rename_base_longout;
 
-proc sort data = _base_longout;
-by hhid pn wave_number;
-run;
-
+/* Sort respondent data by &sortby */
+%sort_base_logout;
 
 /* Move and rename  `_base_longout` from `work` to `libout` SAS library */
 %put outdata= &outdata;

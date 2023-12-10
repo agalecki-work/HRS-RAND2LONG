@@ -115,6 +115,11 @@
 %put  - macro `put_postprocess_dataout`;
 %include _macros(put_postprocess_dataout);
 
+/*-- `put_mrg2_stmnts` */
+%put  - macro `put_mrg2_stmnts`;
+%include _macros(put_mrg2_stmnts);
+
+
 
 
 %put ===> Macro `zzz_05include` ENDS here ======;
