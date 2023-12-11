@@ -17,7 +17,7 @@ libname libin "C:\temp";
 /*--- MAP_INFO: Wide to Long map ---- */
 
 libname lib_map  ".";
-%let map_info = lib_map.randhrs1992_2020v1HL_map; /* SAS dataset with map info */
+%let map_info = lib_map.HLong_map; /* SAS dataset with map info */
                 
 %let waves_list = hrs_wave1- hrs_wave15;     /* List of variables with _all_ wave names  */
 %let waves_sel =  1 to 15;                /* use `do loop` syntax for index value*/
@@ -30,7 +30,7 @@ filename _macros "../../05-macros";
 
 /*--- File with SAS macros referenced as  `map_file` will be generated ----*/
 /* Note: Name of this file should correspond to the name stored in `map_info` macro variable */
-%let map_file = 05-randhrs1992_2020v1HL.inc;
+%let map_file = 05-RLong_mapfile.inc;
 filename map_file "&map_file";       
 
 
@@ -43,9 +43,10 @@ libname aux_out "&aux_outpath";
 %let traceit=Y;
 
 
+
+
 /*=====>>>>  No changes needed below =====*/
 options nofmterr;
-%let vars_map =Y;
 
 %include _macros(zzz_05include);
 %zzz_05include;

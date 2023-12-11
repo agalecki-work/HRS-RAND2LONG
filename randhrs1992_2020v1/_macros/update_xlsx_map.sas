@@ -51,6 +51,8 @@ data _temp_;
  if c1 in ("=","$") then dispatch = ":"||strip(dispatch); 
  drop c1;
 run;
+%end;
+
 
 data lib.&mapx;
  set _temp_;
@@ -61,7 +63,7 @@ proc print data = lib.&mapx;
 run;
 ods excel close;
 
-%end;
+
 
 
 %mend update_xlsx_map;

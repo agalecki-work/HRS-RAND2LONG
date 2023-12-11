@@ -21,6 +21,10 @@
 %put  - macro `traceit`;
 %include _macros(traceit);
 
+/*-- `isBlank` */
+%put  - macro `isBlank`;
+%include _macros(isBlank);
+
 /*-- `vars_map_template` */
 %put  - macro `vars_map_template`;
 %include _macros(vars_map_template);

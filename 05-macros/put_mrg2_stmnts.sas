@@ -62,4 +62,6 @@ data _null_;
    put / ;
   end;
 run;
+%end;
+
 %mend put_mrg2_stmnts;

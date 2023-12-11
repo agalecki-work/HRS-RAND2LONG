@@ -14,6 +14,11 @@
 %put wave_sel := &waves_sel;
 %let  waves_sel2 = %sysfunc(tranwrd(%quote(&waves_sel) ,TO, :));
 %put wave_sel2 := &waves_sel2;
+
+/* Define `vars_map` macro variable */
+%let vars_map=Y;
+%if %isBlank(&waves_list) = 1 %then %let vars_map=N;
+
 /*--- Includes macro definitions stored in  `_macros`  folder ---*/
 data _MAP2Long;
  set &map_info;
@@ -34,7 +39,7 @@ run;
 
 
 data dictionary_init;
-  set _MAP2Long(keep= name label clength format);
+  set _MAP2Long(keep= varnum name label clength format);
 run; 
 
 /* Dataset `vars_map_init`  created from _MAP2Long*/
@@ -64,10 +69,13 @@ data _dictionary;
  if 0 then set dictionary_template; 
  set dictionary_init;
   length c1 $1;
-   varnum = _n_;
+   * varnum = _n_;
    name_valid = nvalid(name, 'v7'); 
    if clength ne "" then c1 = substr(strip(clength),1);
-   if c1 ="`" then clength = translate(clength,'$','`');
+   if c1 =":" then clength = substr(clength,2);
+   if clength ne "" then c1 = substr(strip(clength),1);
+   if c1 ="`" then clength = substr(clength,2);
+
    drop c1;
  run;
 
