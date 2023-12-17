@@ -9,6 +9,18 @@
 %put  - macro `zzz_05main_execute`;
 %include _macros(zzz_05main_execute);
 
+/*-- `CheckLog` */
+%put  - macro `CheckLog`;
+%include _macros(CheckLog);
+
+/*-- `CheckLog_dir` */
+%put  - macro `CheckLog_dir`;
+%include _macros(CheckLog_dir);
+
+/*-- `_usetup_mvars` */
+%put  - macro `_usetup_mvars`;
+%include _macros(_usetup_mvars);
+
 /*-- `traceit_print` */
 %put  - macro `traceit_print`;
 %include _macros(traceit_print);
@@ -24,6 +36,13 @@
 /*-- `isBlank` */
 %put  - macro `isBlank`;
 %include _macros(isBlank);
+
+
+
+/*-- `create_waves_elist` */
+%put  - macro `create_waves_elist`;
+%include _macros(create_waves_elist);
+
 
 /*-- `vars_map_template` */
 %put  - macro `vars_map_template`;

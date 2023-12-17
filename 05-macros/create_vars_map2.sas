@@ -1,5 +1,9 @@
 %macro create_vars_map2;
 /* Create vars_map2 with expanded rows in `vars_map` */;
+ %local tmpi;
+ %let tmpi = wavei = &waves_sel;
+ %put tmpi := &tmpi;
+  
 data vars_map2;
   retain stmnt_no vout dispatch dispatch2 
          eq  q dispatch_type sym_expression option op wave_pattern;
@@ -67,17 +71,15 @@ data vars_map2;
    end;
   
    put  "   =>>> " stmnt_no = vout =  option= ;
-   %_wave_pattern_init;
+   %***_wave_pattern_init;
    
-   %let tmpi = wavei = &waves_sel;
-   %put tmpi := &tmpi;
   
    do &tmpi; ** to dim(waves_list); /* do over selected `wavei` */
      tmpci = strip(waves_list[wavei]);
        *put wavei=  tmpci = ;
        
        /*-- (skip [-] cells, do not over-write non-empty cells --*/ 
-       %_wave_pattern; /* use ` wave_pattern` vars to populate empty cells */
+       %**_wave_pattern; /* use ` wave_pattern` vars to populate empty cells */
        *put tmpci =;    
        /*-- if cell is blank  */
         if tmpci = "" then do;
@@ -105,6 +107,6 @@ data vars_map2;
    end;  /* do wavei */
   * put "--- loop iterations ended"; 
   
-  drop wavei tmpci tmpc2 clist res idx;
+  drop wavei tmpci tmpc2;
 run;
 %mend create_vars_map2;

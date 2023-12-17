@@ -34,9 +34,9 @@ by stmnt_no;
 run;
 
 data mrg2;
- retain stmnt_no wave_no wave_name wave_pattern pattern_range  varxin1 op dispatch_type option stmnt; 
+ retain stmnt_no wave_no wave_name wave_pattern  varxin1 op dispatch_type option stmnt; 
  merge mrg1(in=in1) 
-       vars_map2(keep = stmnt_no vout dispatch dispatch_type op eq  sym_expression option wave_pattern pattern_range 
+       vars_map2(keep = stmnt_no vout dispatch dispatch_type op eq  sym_expression option wave_pattern 
          in=in2);
  by stmnt_no;
  /* eq =Y if equals sign */

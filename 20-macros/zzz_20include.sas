@@ -13,6 +13,12 @@
 %include _macros(create_outdata);
 
 
+/*-- `create_outdata_wide` */
+%put  - macro `create_outdata_wide`;
+%include _macros(create_outdata_wide);
+
+
+
 /*-- `sort_base_logout` */
 %put  - macro `sort_base_logout`;
 %include _macros(sort_base_logout);

@@ -4,7 +4,7 @@ data _null_;
   mname = 'postprocess_dataout';
   put / '%macro ' mname ';';
   put "/*  Code for postprocessing output dataset */";
-  put @3 '%'  "keepvar_statement;";
+  put @3 'keep %'  "keepvar_list;";
   put @3 "/* ... more statments , if needed */"; 
   put '%mend ' mname ';';
 run;

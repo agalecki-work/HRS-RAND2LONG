@@ -38,7 +38,7 @@ data datain_info ;
   length datain $42;
   datain = 'libin.'||datain_name; /* libin.datain_name */
   length aug_dict_exec $100;
-  aug_dict_exec = '%aug_dict(' || strip(datain_no) || "," || strip(datain) || ")";
+  aug_dict_exec = '%aug_dict(' || strip(put(datain_no,3.)) || "," || strip(datain) || ")";
 run;
 
 /* Dataset `_dictionary2` _before_ adding datain variables */;

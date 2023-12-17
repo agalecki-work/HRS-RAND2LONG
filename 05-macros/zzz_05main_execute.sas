@@ -1,23 +1,21 @@
 %macro zzz_05main_execute;
 
 
-
-%let DATAIN_NAME =&datain;
-
-
 %global HRS_RAND2LONG_version traceit vars_map;
+%global waves_list waves_elist waves_sel wave_max_no;
+
+%_usetup_mvars;
+%***sanitize_vars;
+%let DATAIN_NAME =&datain;
 %global map_file waves_sel  waves_sel2;
 %**global xlsx_fnm map_info;
 %global aux_outpath;
-%global waves_list waves_elist wave_max_no;
+
 %let waves_sel = %upcase(&waves_sel);
 %put wave_sel := &waves_sel;
 %let  waves_sel2 = %sysfunc(tranwrd(%quote(&waves_sel) ,TO, :));
 %put wave_sel2 := &waves_sel2;
 
-/* Define `vars_map` macro variable */
-%let vars_map=Y;
-%if %isBlank(&waves_list) = 1 %then %let vars_map=N;
 
 /*--- Includes macro definitions stored in  `_macros`  folder ---*/
 data _MAP2Long;
@@ -54,12 +52,13 @@ run;
 
 /*--- Create 'vars_map_template` dataset and `waves_elist` macro variable */
 %if &vars_map = Y %then %do;
- %vars_map_template(vars_map_init, &waves_list); /* & map_info */
+ %create_waves_elist(vars_map_init, &waves_list); /* & map_info */
+ %vars_map_template;
  %put expanded waves_list := &waves_elist;
  
  %if &traceit = Y %then 
    %traceit(vars_map_template);
-%end;
+%end; /* ifvars_map */
 
 
 /* Dataset `_dictionary`: */
@@ -100,16 +99,16 @@ data _dictionary;
  /*--- `waves_info` dataset  with one row per wave created `vars_map2`  */
  %create_waves_info;
 
-%end;
-
-
 /* Create `_dictionary2` dataset by adding `datain#` variables */
 %create_dictionary2;
 
+%end; /* if vars_map */
+
+
 %if &vars_map = Y %then %create_mrg2;
-  
-  
-%save_aux_data;
+ 
+%if &vars_map = Y %then
+     %save_aux_data;
 
 %**contents_aux_data; 
 
@@ -121,7 +120,12 @@ data _dictionary;
 %put :::;
 %let n_vout = %attrn_nlobs(_dictionary);
 
+data _null_;
+  file map_file;
+  put "/* Table: &tbl (&sysdate)*/";
+run;
 
+%macro needs_work;
 data _null_;
   file map_file;
   *length map_info $ 200;
@@ -159,6 +163,7 @@ data _null_;
   put "  - create_outdata macro defined elsewhere";
   put "===========================*/" /;
 run;
+%mend needs_work;
 
 
 
@@ -252,26 +257,26 @@ data _null_;
 run;
 
 
-/*--- Keep statement ---*/
+/*--- Keepvar list ---*/
 
 %let nkeep = %attrn_nlobs(_dictionary);
 data _null_;
   file map_file mod ;
   set _dictionary  end = eof;
    if _n_=1 then do;
-     /* Generate keep statement*/
-     put / '%macro keepvar_statement;';
+     /* Generate list of vars to keep */
+     put / '%macro keepvar_list;';
      put "/* Keep statement for &nkeep variables */";
-     put " keep";
    end;
    put @3  name;
    if eof then do; 
-     put ";";
-     put '%mend keepvar_statement;';
+     put '%mend keepvar_list;';
    end;
 run;
 
-%put_mrg2_stmnts; /* set mrg2 */
+%put --- vars_map := &vars_map;
+%if &vars_map = Y %then %do;
+  %put_mrg2_stmnts; /* set mrg2 */
 
 /* Macro `process_selected_waves` */
 /* Uses info stored in `_waves_selected` SAS dataset */
@@ -311,8 +316,8 @@ run;
 data _datain;
  set _datain;
  length stmnt1 stmnt2  $200;
-   stmnt1 = '%'|| 'put_init_vars(' ||  strip(datain_no) || "," || strip(datain_name) || ")";
-   stmnt2 = '%'|| 'put_preprocess_datain(' ||  strip(datain_no) || "," || strip(datain_name) || ")";
+   stmnt1 = '%'|| 'put_init_vars(' ||  strip(put(datain_no, 3.)) || "," || strip(datain_name) || ")";
+   stmnt2 = '%'|| 'put_preprocess_datain(' ||  strip(put(datain_no,3.)) || "," || strip(datain_name) || ")";
    put stmnt1 =;
    put stmnt2 =;
  *call execute(stmnt);
@@ -330,7 +335,7 @@ run;
 
 %put_postprocess_dataout;
 filename map_file clear;
-
+%end; /*if */
 %put Macro `zzz_05main_execute` ends here;
 
 %mend zzz_05main_execute;
