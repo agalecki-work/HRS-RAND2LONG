@@ -23,7 +23,7 @@ quit;
 /*--- Create `_template_longout` SAS dataset template for long data (with 0 observations) ----*/
 %create_template_longout;
 
-data _base_longout(label = "Table %upcase(&tbl) created from &wide_datain (&sysdate)");
+data _base_longout(label = "Table %upcase(&tbl) created from &wide_datain (datestamp: &sysdate, Table Version:= &table_version)");
   set _template_longout;
 run;
 

@@ -5,7 +5,7 @@ options nocenter;
 
 ods listing close;
 
-ods html file = "98-checklog&outloc..html"; 
-%checklog_dir(&dir_path);
+ods html file = "98-checklog.html"; 
+%checklog_dir(&dir_name);
 
 ods html close;

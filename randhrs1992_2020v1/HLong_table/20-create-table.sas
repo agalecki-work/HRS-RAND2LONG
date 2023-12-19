@@ -1,16 +1,24 @@
 
-options nocenter mprint;*  nofmterr;
-%_project_setup;
+options nocenter mprint;
 
-/* Select table:  Rwide, RLONG, HLONG, EXIT */
-%_table_setup(Hlong);
+libname _data  "&prj_path\&dir_name\data";
 
-/*----- Trace (optional) ----*/
-%let traceit=Y;
+%macro _20_create_table(tbl);
+filename map_file "&prj_path\&dir_name\05-&tbl._map_file.inc";
 
 %let key_vars = hhid  wave_number H_HHiDC;
 
-
-/* Execute macros */
 %zzz_20main_execute;
 
+%mend _20_create_table;
+
+/* Execution starts */
+%_project_setup;
+
+/* Select table:  Rwide, RLONG, HLONG, EXIT */
+%**_table_setup(Hlong);
+
+/*----- Trace (optional) ----*/
+%**let traceit=Y;
+
+%_20_create_table(HLong);

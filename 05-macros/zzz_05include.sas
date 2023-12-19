@@ -9,6 +9,13 @@
 %put  - macro `zzz_05main_execute`;
 %include _macros(zzz_05main_execute);
 
+
+
+/*-- `html_aux_report` */
+%put  - macro `html_aux_report`;
+%include _macros(html_aux_report);
+
+
 /*-- `CheckLog` */
 %put  - macro `CheckLog`;
 %include _macros(CheckLog);

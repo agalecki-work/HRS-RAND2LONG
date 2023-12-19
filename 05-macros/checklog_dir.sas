@@ -1,12 +1,16 @@
 
-%macro checklog_dir(dir);
-Title "Project &prj_name: Folder &dir_name (outloc= &outloc)";
+%macro checklog_dir(subdir);
+Title "Project &prj_name: Subdirectory &subdir";
+%let dir = &prj_path\&subdir;
 %checklog(&dir, pm=N);
+
 data log_issues;
   set log_issues;
-  log = tranwrd(log,"&dir",".");
+  log = tranwrd(log,"&prj_path",".");
   if lowcase(log) = "&skip" then delete;
 run;
+
+
 proc print data=log_issues;
 run; 
 

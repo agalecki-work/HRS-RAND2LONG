@@ -1,9 +1,16 @@
 %let skip= .\98-chklog.log; 
 options nocenter;
 
+filename chklog "&repo_path\05-macros";
+%include chklog(checklog_dir, checklog);
+filename chklog clear;
+
 ods listing close;
-ods html file = "90-execute_all.html";
-%checklog(&prj_path\90-execute_all.log,pm=N);
+ods html file = "98-chklog_all.html";
+
+%checklog_dir(S1_update_maps); /* Subfolder in project directory */
+%checklog_dir(S2_data_tables);
+
 ods html close;
 
 

@@ -12,7 +12,7 @@
 /* - clength variable */
 proc sql noprint;
 alter table _temp_
-  modify clength char(6) format = $6.;
+  modify clength char(5) format = $5.;
 quit;
 
 /* - wave_pattern variable */
@@ -44,7 +44,7 @@ run;
 
 
 
-data _libout.&mapx (label = "Table created from &xlsx_name..xlsx on &sysdate");
+data _libmap.&mapx (label = "Map Table created from &xlsx_name..xlsx on &sysdate");
  set _temp_;
 run;
 

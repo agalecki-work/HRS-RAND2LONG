@@ -33,6 +33,7 @@ data _temp_;
 run;
 
 data vars_map1;
+  retain vout dispatch wave_pattern;
   set _temp_ vars_map1;
 run;
 

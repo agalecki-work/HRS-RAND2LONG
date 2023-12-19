@@ -11,6 +11,6 @@
   %**vars_map_template;
   %**traceit_contents(vars_map_template);
 %end;
- %traceit_print(&mapx, libname=_libout, obs=50);
+ %traceit_print(&mapx, libname=_libmap, obs=50);
 
 %mend  zzz_xlsx_update;
