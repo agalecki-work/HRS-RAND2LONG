@@ -11,7 +11,7 @@
 %let prj_path = &repo_path\&prj_name;
 
 /*------ Excel file multiple maps (required)------*/
-%let xlsx_nickname = test_maps;   /* randhrs1992_2020v1_maps */
+%let xlsx_nickname = randhrs1992_2020v1_maps;   /* test_maps  */
 %let xlsx_date =13DEC2023;
 %let xlsx_path = C:\temp;
 %let xlsx_name =&xlsx_nickname&xlsx_date;   

@@ -1,10 +1,10 @@
-libname lib "./outdata";
+
 
 %let data = rlong_table;
 
 /* --- Code works without using SAS formats */
 options nofmterr nocenter;
-Title "PROC CONTENTS for &data";
+Title "Table &data.. PROC CONTENTS";
 proc contents data=lib.&data out= contents(keep= memname varnum name type format label nobs) noprint;
 run;
 
@@ -12,30 +12,30 @@ proc sort data=contents;
 by varnum;
 run;
 
-Title2 "Contents Part 1/2";
+Title2 "Table &data.. Contents Part 1/2";
 proc print data=contents;
 var varnum name label;
 run;
 
-Title2 "Contents Part 2/2";
+Title2 "Table &data.. Contents Part 2/2";
 proc print data=contents;
 var varnum name type format nobs;;
 run;
 
-Title "Data: &data. Selected vars (n=50)";
+Title "Table: &data.. Selected vars (n=50)";
 proc print data = lib.&data(obs=50);
 var  HHID PN HHIDPN WAVE_NUMBER INW HACOHORT STUDYYR R_HECOV3 R_YR;
 run;
 
 
-Title "Number of rows (respondents) per wave/study year";
+Title "Table: &data.. Number of rows (respondents) per wave/study year";
 proc freq data = lib.&data;
 table wave_number /nopercent norow nocol;
 table studyyr;
 table wave_number*r_yr /missing nopercent norow nocol;
 run;
 
-Title "PROC FREQ without SAS formats";
+Title "Table: &data.. PROC FREQ without SAS formats";
 Title2 "All missing data categories listed";
 proc freq data = lib.&data;
 tables R_YR / missing; 
@@ -44,7 +44,7 @@ tables R_NHMLIV/missing;
 
 run;
 
-Title2 "All missing data combined";
+Title2 "Table: &data.. All missing values combined";
 proc freq data = lib.&data;
 tables R_YR r_mstat R_NHMLIV; 
 

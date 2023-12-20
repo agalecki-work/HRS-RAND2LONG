@@ -10,7 +10,7 @@ ods html file = "98-chklog_all.html";
 
 %checklog_dir(S1_update_maps); /* Subfolder in project directory */
 %checklog_dir(S2_data_tables);
-
+%checklog_dir(S3_data_tests);
 ods html close;
 
 

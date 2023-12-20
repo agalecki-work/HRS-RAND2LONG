@@ -8,7 +8,7 @@ libname _data  "&prj_path\&dir_name\data";
  filename map_file "&prj_path\&dir_name\map_files\&tbl._map_file.inc";
  %let tbl_name= &tbl._table;
  %let outdata = _data.&tbl_name;
- %let outdata_formats =_data._RANDftms_long;
+ %let outdata_formats =_data._RANDfmts_long;
  %zzz_20main_execute;
 
  /* Create `work.formats` catalog from cntlin dataset*/
