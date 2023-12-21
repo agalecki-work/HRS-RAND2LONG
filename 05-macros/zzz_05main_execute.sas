@@ -40,7 +40,10 @@ ods listing;
 
 data _null_;
   file map_file;
-  put "/* Table: &tbl (&sysdate)*/";
+  put "/* Repo name := &repo_name (version &repo_version) */";
+  put "/* Rroject name := &prj_name */";
+  put "/* Excel map: &xlsx_name..xlsx */";
+  put "/* This file was created on &sysdate.. */";
 run;
 
 %macro needs_work;
@@ -93,19 +96,23 @@ data _null_;
   length clen1 $1;
   length clen2 $5;
    if _n_=1 then do;
-     /*--- Length statements for character vars  ----*/
+     /*--- Length statements for character and selected numeric vars  ----*/
      put / '%macro clength_statements;';
-     put "/* Length statements for character vars */";
+     put "/* Length statements for character and selected numeric vars */";
    end;
    
      
    clen1 = "N"; /* By default numeric */
    clen2 = strip(clength);
    if clength ne "" then do;
+   %macro skip;
      clen1  = substr(clength, 1, 1);
      if clen1 = "$" then clen1 = "Y";
      clen2  = translate(clength, "", "$");  /* $ suppressed */ 
      if clen1 ="Y" then put @3 'length ' name clength +(-1) ";"  @45 "/* _" varnum "*/"; 
+   %mend skip;
+     put @3 'length ' name clength +(-1) ";"  @45 "/* _" varnum "*/";
+   
    end;
  
    if eof then do; 
