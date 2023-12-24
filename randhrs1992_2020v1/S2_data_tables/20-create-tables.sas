@@ -14,9 +14,7 @@ libname _data  "&prj_path\&dir_name\data";
  /* Create `work.formats` catalog from cntlin dataset*/
  proc format lib = WORK cntlin = &outdata_formats;
  run;
- 
- %***contents_data(_data.&tbl_name, print=N, out=_contents_data);
- 
+  
  filename map_file clear; 
 %mend _20create_table;
 
@@ -24,8 +22,11 @@ libname _data  "&prj_path\&dir_name\data";
 /* Execution starts */
 %_project_setup;
 
-
+%*macro skip;
 %_20create_table(RLong, hhid  PN wave_number);
 %_20create_table(HLong, hhid  wave_number H_HHiDC );
 %_20create_table(Rwide, hhid  PN);
 %_20create_table(Rexit, hhid  PN);
+%*mend  skip;
+
+%_20create_table(RSSI,  hhid  PN RSSI_EPISODE);

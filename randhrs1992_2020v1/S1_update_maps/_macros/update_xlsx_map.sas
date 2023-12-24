@@ -41,10 +41,11 @@ run;
 
 
 %if (&vars_map =Y) %then %populate_mapY;
+%if (&vars_map =E) %then %populate_mapE;
 
 
 
-data _libmap.&mapx (label = "Map Table created from &xlsx_name..xlsx on &sysdate");
+data _libmap.&mapx (label = "Map Table &mapx created from &xlsx_name..xlsx on &sysdate");
  set _temp_;
 run;
 

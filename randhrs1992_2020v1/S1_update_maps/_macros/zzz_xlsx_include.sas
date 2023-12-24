@@ -5,6 +5,8 @@
 %**include macros(excelxls);
 %include macros(update_xlsx_map);
 %include macros(populate_mapY);
+%include macros(populate_mapE);
+
 %include macros(sanitize_clength);
 %include macros(sanitize_dispatch);
 

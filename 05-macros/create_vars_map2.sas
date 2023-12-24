@@ -1,4 +1,5 @@
 %macro create_vars_map2;
+%put --- Macro `create_vars_map2` STARTS here ---;
 /* Create vars_map2 with expanded rows in `vars_map` */;
  %local tmpi;
  %let tmpi = wavei = &waves_sel;
@@ -109,4 +110,8 @@ data vars_map2;
   
   drop wavei tmpci tmpc2;
 run;
+
+%traceit(vars_map2);
+%put --- Macro `create_vars_map2` ENDS here ---;
+
 %mend create_vars_map2;

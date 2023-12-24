@@ -1,6 +1,6 @@
 
-%macro create_outdata(datain);
- /* Creates and appends `_outdata` */
+%macro create_outdataE(datain);
+ /* Creates and appends `_outdata` for vars_map =(E)pisodes*/
  /* Macros 
     `preprocess_datain1`, 
     `process_selected_waves`, 
@@ -10,12 +10,12 @@
  data _outdata;
    if 0 then set _template_longout;
     set &datain;
-    %preprocess_datain1; 
-    %process_selected_waves;
+    %*preprocess_datain1; 
+    %*process_selected_waves;
     %postprocess_dataout;
  run;
  
  proc append base = _base_longout
              data= _outdata;
  run;
-%mend create_outdata;
+%mend create_outdataE;

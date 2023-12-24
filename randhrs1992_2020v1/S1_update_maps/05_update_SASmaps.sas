@@ -42,6 +42,7 @@ filename macros "&prj_path\&dir_name\_macros";
 %map_update(Hlong);
 %map_update(Rwide);
 %map_update(Rexit);
+%map_update(RSSI);
 libname _libmap clear;
 ods html close;
 

@@ -6,7 +6,7 @@ data aux_out.MAPX_02dictionary2;
    set _dictionary2;
 run;
 
-%if &vars_map = Y %then %do;
+%if (&vars_map = Y or &vars_map = E) %then %do;
  data aux_out.MAPX_03vars_map1;
    set vars_map1;
  run;

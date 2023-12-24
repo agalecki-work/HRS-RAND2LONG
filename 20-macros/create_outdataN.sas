@@ -1,6 +1,8 @@
 
-%macro create_outdata_wide(datain);
- /* Creates and appends `_outdata` */
+%macro create_outdataN(datain);
+ /* Creates and appends `_outdata` for vars_map = N*/
+ 
+ 
     
  data _outdata;
    if 0 then set _template_longout;
@@ -10,4 +12,4 @@
  proc append base = _base_longout
              data= _outdata;
  run;
-%mend create_outdata_wide;
+%mend create_outdataN;

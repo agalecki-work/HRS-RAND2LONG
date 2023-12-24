@@ -7,6 +7,8 @@ data _datain0_;
   if strip(upcase(vout)) = "_DATAIN_NAME_";
 run;
 
+%traceit(_datain0_);
+
 proc transpose data = _datain0_
    out =  waves_allinfo(drop=_label_ rename =(col1= datain_name))
    name = wave_name;
@@ -14,7 +16,6 @@ proc transpose data = _datain0_
 run;
 
 data waves_allinfo;
-
  length wave_no 8;
  label wave_no = "Wave number";
  /*--- length wave_name $ 32; ---*/
@@ -37,11 +38,6 @@ run;
 %let wave_max_no = %attrn_nlobs(waves_allinfo);
 %put wave_max_no := wave_max_no;
 
-
-%if &traceit = Y %then %do;
-   %traceit(_datain0_);
-   %traceit(waves_allinfo);
-%end;
-
+%traceit(waves_allinfo);
 
 %mend create_waves_allinfo;

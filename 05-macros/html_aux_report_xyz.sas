@@ -11,16 +11,16 @@ quit;
 
 
 /* Dataset `vars_map_init`  created from _MAP2Long*/
-%if &vars_map = Y %then %create_vars_map_init;
+%if (&vars_map = Y or &vars_map = E) %then %create_vars_map_init;
 
 
 /*---  Create `dictionary_template` dataset ---*/
 %dictionary_template;
 
-%traceit_contents(dictionary_template);
+%*traceit_contents(dictionary_template);
 
 /*--- Create 'vars_map_template` dataset and `waves_elist` macro variable */
-%if &vars_map = Y %then %do;
+%if (&vars_map = Y or &vars_map = E ) %then %do;
  %create_waves_elist(vars_map_init, &waves_list); /* & map_info */
  %vars_map_template;
  %put expanded waves_list := &waves_elist;
@@ -34,15 +34,17 @@ quit;
 data _dictionary;
  if 0 then set dictionary_template; 
  set dictionary_init;
-  length c1 $1;
    * varnum = _n_;
    name_valid = nvalid(name, 'v7'); 
+%macro skipit;   
+   length c1 $1;
    if clength ne "" then c1 = substr(strip(clength),1);
    if c1 =":" then clength = substr(clength,2);
    if clength ne "" then c1 = substr(strip(clength),1);
    if c1 ="`" then clength = substr(clength,2);
 
    drop c1;
+%mend skipit;   
  run;
 
    %traceit(_dictionary);
@@ -53,7 +55,7 @@ data _dictionary;
 /* They should have zero observations */
 %checkdupkey(_dictionary, name);
 
-%if &vars_map = Y %then %do;
+%if (&vars_map = Y or &vars_map = E )%then %do;
   %create_vars_map1;
  
  /*--- `waves_allinfo` dataset  with one row per wave created  */
@@ -62,7 +64,7 @@ data _dictionary;
  /* DATA `vars_map2`: key: stmnt_no,  contains_DATAIN_ row */
  %create_vars_map2; 
  
- %traceit(vars_map2);
+ %*traceit(vars_map2);
 
  /*--- `waves_info` dataset  with one row per wave created `vars_map2`  */
  %create_waves_info;
@@ -75,7 +77,7 @@ data _dictionary;
 
 %if &vars_map = Y %then %create_mrg2;
  
-%if &vars_map = Y %then
+%if (&vars_map = Y or &vars_map = E) %then
      %save_aux_data;
 
 %**contents_aux_data; 

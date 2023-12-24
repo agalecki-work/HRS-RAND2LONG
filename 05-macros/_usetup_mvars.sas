@@ -10,7 +10,7 @@
 %let vars_map=N;
 %if %upcase(&tbl) = RLONG %then %let vars_map=Y;
 %if %upcase(&tbl) = HLONG %then %let vars_map=Y;
-%if %upcase(&tbl) = RSSDI %then %let vars_map=E; /* SSDI Episodes */
+%if %upcase(&tbl) = RSSI  %then %let vars_map=E; /* SSI/SSDI Episodes */
 
 %let waves_list =;
 %let waves_sel =;
@@ -22,7 +22,7 @@
 %end;
 
 %if &vars_map =E %then %do;
-  %let waves_list = ssdi_E1- ssdi_E11;     /* List of variables with SSDI episodes  */
+  %let waves_list = ssi_E1- ssi_E11;     /* List of variables in table map with SSI/SSDI episodes  */
   %let waves_sel =  1 to 11;                /* use `do loop` syntax for index value*/
 %end;
 

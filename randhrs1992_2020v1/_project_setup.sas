@@ -12,7 +12,7 @@
 
 /*------ Excel file multiple maps (required)------*/
 %let xlsx_nickname = randhrs1992_2020v1_maps;   /* test_maps  */
-%let xlsx_date =13DEC2023;
+%let xlsx_date =20DEC2023;
 %let xlsx_path = C:\temp;
 %let xlsx_name =&xlsx_nickname&xlsx_date;   
 %let table_version = &repo_version-&xlsx_date;

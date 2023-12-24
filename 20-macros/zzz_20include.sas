@@ -8,14 +8,17 @@
 %include _macros(zzz_20main_execute);
 
 
-/*-- `create_outdata` */
-%put  - macro `create_outdata`;
-%include _macros(create_outdata);
+/*-- `create_outdataY` */
+%put  - macro `create_outdataY`;
+%include _macros(create_outdataY);
 
+/*-- `create_outdataN` */
+%put  - macro `create_outdataN`;
+%include _macros(create_outdataN);
 
-/*-- `create_outdata_wide` */
-%put  - macro `create_outdata_wide`;
-%include _macros(create_outdata_wide);
+/*-- `create_outdataE` */
+%put  - macro `create_outdataE`;
+%include _macros(create_outdataE);
 
 
 

@@ -1,0 +1,11 @@
+%macro put_postprocess_data;
+data _null_;
+  file map_file mod;
+  mname = 'postprocess_data';
+  put / '%macro ' mname ';';
+  put "/* Table &tbl:  Code for postprocessing data */";
+  put @3 'keep %'  "keep_varlist;";
+  put @3 "/* ... more statments , if needed */"; 
+  put '%mend ' mname ';';
+run;
+%mend put_postprocess_data;

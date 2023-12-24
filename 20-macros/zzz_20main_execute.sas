@@ -31,12 +31,18 @@ run;
 
 %put vars_map = &vars_map;
 
+%macro skip;
 %if &vars_map =Y %then
-  %create_outdata(&wide_datain);  
+  %create_outdataY(&wide_datain);  
   
-%if &vars_map ne Y %then
-  %create_outdata_wide(&wide_datain);  
+%if &vars_map = N %then
+  %create_outdataN(&wide_datain);  
 
+%if &vars_map = E %then
+  %create_outdataN(&wide_datain);  
+%mend skip;
+
+%append_outtable(&wide_datain);
 
 /* Move and rename  `_base_longout` from `work` to `libout` SAS library */
 %rename_base_longout;

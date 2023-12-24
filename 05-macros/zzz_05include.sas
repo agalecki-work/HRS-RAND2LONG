@@ -9,13 +9,6 @@
 %put  - macro `zzz_05main_execute`;
 %include _macros(zzz_05main_execute);
 
-
-
-/*-- `html_aux_report` */
-%put  - macro `html_aux_report`;
-%include _macros(html_aux_report);
-
-
 /*-- `CheckLog` */
 %put  - macro `CheckLog`;
 %include _macros(CheckLog);
@@ -44,6 +37,10 @@
 %put  - macro `isBlank`;
 %include _macros(isBlank);
 
+
+/*-- `_YE_block` */
+%put  - macro `_YE_block`;
+%include _macros(_YE_block);
 
 
 /*-- `create_waves_elist` */
@@ -99,6 +96,14 @@
 %include _macros(aug_dict);
 
 
+/*-- `create_dictionary_init` */
+%put  - macro `create_dictionary_init`;
+%include _macros(create_dictionary_init);
+
+/*-- `create_dictionary` */
+%put  - macro `create_dictionary`;
+%include _macros(create_dictionary);
+
 
 /*-- `create_dictionary2` */
 %put  - macro `create_dictionary2`;
@@ -132,18 +137,29 @@
 %include _macros(contents_aux_data);
 
 
+
+/*-- `put_init_macro_stmnts` */
+%put  - macro `put_init_macro_stmnts`;
+%include _macros(put_init_macro_stmnts);
+
+/*-- `put_init_macro_stmnts_YE` */
+%put  - macro `put_init_macro_stmnts_YE`;
+%include _macros(put_init_macro_stmnts_YE);
+
+
+
 /*-- `put_init_vars` */
 %put  - macro `put_init_vars`;
 %include _macros(put_init_vars);
 
 
-/*-- `put_preprocess_datain` */
-%put  - macro `put_preprocess_datain`;
-%include _macros(put_preprocess_datain);
+/*-- `put_preprocess_data` */
+%put  - macro `put_preprocess_data`;
+%include _macros(put_preprocess_data);
 
-/*-- `put_postprocess_dataout` */
-%put  - macro `put_postprocess_dataout`;
-%include _macros(put_postprocess_dataout);
+/*-- `put_postprocess_data` */
+%put  - macro `put_postprocess_data`;
+%include _macros(put_postprocess_data);
 
 /*-- `put_mrg2_stmnts` */
 %put  - macro `put_mrg2_stmnts`;

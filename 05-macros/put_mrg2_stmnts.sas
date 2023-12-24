@@ -1,5 +1,5 @@
 %macro put_mrg2_stmnts;
-%if &vars_map =Y %then %do;
+%if (&vars_map =Y or &vars_map =E) %then %do;
 /*-- Create macros with DATA step statements for processing a given wave --- */
 data _null_;
   file map_file mod ;

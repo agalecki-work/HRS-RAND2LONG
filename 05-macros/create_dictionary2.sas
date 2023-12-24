@@ -47,11 +47,9 @@ data _dictionary2;
   name = lowcase(name);
 run;
 
-
 proc sort data = _dictionary2;
 by name;
 run;
-
 
 
 data _null_;
@@ -63,9 +61,7 @@ run;
 proc sort data =  _dictionary2;
 by varnum;
 run;
-
-%if &traceit = Y %then 
-   %traceit(_dictionary2);
+%traceit(_dictionary2);
 
 
 %mend create_dictionary2;

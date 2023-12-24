@@ -18,15 +18,12 @@ data vars_map1;
  drop name c1 eq; 
 run;
 
-%if &traceit = Y %then 
-    %traceit(vars_map1);
+%**traceit(vars_map1);
        
   /* `vars_map1` modified */
 
   /* _Conditionally_ inserts _datain_ row using dataset name stored in `DATAIN_NAME` macro variable */
-   %insert_datain_row; 
- 
-   %if &traceit = Y %then 
-     %traceit(vars_map1);
+  %if (&vars_map = Y or &vars_map =E) %then %insert_datain_row; 
+%traceit(vars_map1);
 
 %mend create_vars_map1;

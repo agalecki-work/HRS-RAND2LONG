@@ -1,6 +1,6 @@
 %macro dictionary_template;
 
-%put --->> Macro `dictionary_template`: Dataset `dictionary_template` created;
+%put --->> Macro `dictionary_template` STARTS: Dataset `dictionary_template` created;
 
 
 
@@ -35,5 +35,9 @@ data dictionary_template;
   stop;
 
 run;
+%traceit_contents(dictionary_template);
+
 %put --- Dataset `dictionary_template` contains 0 obseravtions;
+%put --->> Macro `dictionary_template` ENDS;
+
 %mend dictionary_template;
