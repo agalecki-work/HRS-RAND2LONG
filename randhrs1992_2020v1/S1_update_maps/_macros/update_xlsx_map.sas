@@ -1,5 +1,5 @@
 %macro update_xlsx_map;
-%put --- Macro `update_xlsx_map` STARTS;
+%put ===> Macro `update_xlsx_map` STARTS;
 
 %put xlsx_path   := &xlsx_path;
 %put xlsx_name   := &xlsx_name;
@@ -50,5 +50,5 @@ data _libmap.&mapx (label = "Map Table &mapx created from &xlsx_name..xlsx on &s
 run;
 
 %put --- Macro `update_xlsx_map` EXIT;
-
+%put; 
 %mend update_xlsx_map;
